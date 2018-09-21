@@ -18,7 +18,7 @@ linreg <- setRefClass("linreg",
       y <<- data[,all.vars(f)[1]]
     },
     coef = function(){
-      beta <<- as.vector(solve(t((X)%*%X)%*%t(X)%*%y))
+      beta <<- as.vector(solve((t(X)%*%X)%*%t(X)%*%y))
       return(beta)
     },
     pred = function(){
