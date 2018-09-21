@@ -22,7 +22,7 @@ linreg <- setRefClass("linreg",
       return(beta)
     },
     pred = function(){
-      y_hat <<- x%*%beta
+      y_hat <<- X%*%beta
     },
     resid = function(){
       e_hat <<- y-y_hat
