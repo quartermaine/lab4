@@ -1,5 +1,7 @@
 #' A class for linear regression with many methods for corresponding values calculations
 #'
+#'
+#'
 #' @field y vector The orginial labels of observations in data
 #' @field X matrix The features of all observations in data
 #' @field beta vector The coefficients in the sample
@@ -13,6 +15,7 @@
 #' @field formula character The formula used in the model
 #' @field data data.frame The sample data
 #'
+#' @import methods
 #' @export linreg
 #' @exportClass linreg
 
@@ -53,30 +56,39 @@ linreg <- setRefClass("linreg",
       names(p_val) <<- colnames(X)
       names(beta) <<- colnames(X)
     },
+    #Regressions coefficients
     coef = function(){
       return(beta)
     },
+    #The fitted values, the predicted labels  yˆ = X βˆ
     pred = function(){
       return(y_hat)
     },
+    #The residuals
     resid = function(){
       return(e_hat)
     },
+    #The degrees of freedom
     freedomdegree = function(){
       return(df)
     },
+    #The residual variance
     residualvariance = function(){
       return(var_resid)
     },
+    #The variance of the regression coefficients
     coeffvariance = function(){
       return(var_hat)
     },
+    #The t-values for each coefficient
     t_values = function(){
       return(t_val)
     },
+    #The p-values for each coefficient
     p_values = function(){
       return(p_Val)
     },
+    #The print function
     print = function(){
       cat("Call:\n")
       cat("formula =",formula, "\n")
@@ -84,6 +96,7 @@ linreg <- setRefClass("linreg",
       cat("Coefficitents:\n")
       beta
     },
+    #The summary function
     summary = function(){
       cat("Coefficitents:\n")
       base::print(beta)
@@ -100,3 +113,4 @@ linreg <- setRefClass("linreg",
   )
 
 )
+NULL
